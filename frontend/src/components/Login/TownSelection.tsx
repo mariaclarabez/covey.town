@@ -59,6 +59,7 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
     const timer = setInterval(updateFromApi, 2000);
     // clear interval when component unmounts
     return () => clearInterval(timer);
+    // dependency; passed in to avoid linter error. useEffect gets called when apiClient changes (but this never happens)
   }, [apiClient]);
 
 
