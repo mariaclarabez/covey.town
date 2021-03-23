@@ -23,6 +23,7 @@ import { CoveyTownInfo, TownJoinResponse } from '../../classes/TownsServiceClien
 import Video from '../../classes/Video/Video';
 import useCoveyAppState from '../../hooks/useCoveyAppState';
 import useVideoContext from '../VideoCall/VideoFrontend/hooks/useVideoContext/useVideoContext';
+import LoginButton from '../LoginButton';
 
 interface TownSelectionProps {
   doLogin: (initData: TownJoinResponse) => Promise<boolean>;
@@ -153,6 +154,7 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
 
   return (
     <>
+      <LoginButton />
       <form>
         <Stack>
           <Box p='4' borderWidth='1px' borderRadius='lg'>
