@@ -1,4 +1,6 @@
 
+
+// note: this should be a singleton object. I just wrote this stuff to test the db connection. -CB
 const knex = require('knex')({
     client: 'pg',
     version: '13.2',
