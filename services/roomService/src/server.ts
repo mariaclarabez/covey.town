@@ -4,8 +4,11 @@ import CORS from 'cors';
 import { AddressInfo } from 'net';
 import addTownRoutes from './router/towns';
 
+const  graphqlController = require('./graphql/graphqlController');
+
 const app = Express();
 app.use(CORS());
+app.use('/graphql', graphqlController)
 const server = http.createServer(app);
 
 addTownRoutes(server, app);
