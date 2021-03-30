@@ -19,11 +19,11 @@ import {
 } from '@chakra-ui/react';
 import assert from 'assert';
 import React, { useEffect, useState } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 import { CoveyTownInfo, TownJoinResponse } from '../../classes/TownsServiceClient';
 import Video from '../../classes/Video/Video';
 import useCoveyAppState from '../../hooks/useCoveyAppState';
 import useVideoContext from '../VideoCall/VideoFrontend/hooks/useVideoContext/useVideoContext';
-import LoginButton from '../Authentication/LoginButton';
 
 interface TownSelectionProps {
   doLogin: (initData: TownJoinResponse) => Promise<boolean>;
@@ -41,6 +41,7 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
   const { connect } = useVideoContext();
   const { apiClient } = useCoveyAppState();
   const toast = useToast();
+  const { isAuthenticated } = useAuth0();
 
 
   // set up hooks for component mount
@@ -156,7 +157,7 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
     <>
       <form>
         <Stack>
-          <Box p='4' borderWidth='1px' borderRadius='lg'>
+          {isAuthenticated ? null : (<Box p='4' borderWidth='1px' borderRadius='lg'>
             <Heading as='h2' size='lg'>
               Select a username
             </Heading>
@@ -170,7 +171,7 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
                 onChange={event => setUserName(event.target.value)}
               />
             </FormControl>
-          </Box>
+          </Box>)} 
           <Box borderWidth='1px' borderRadius='lg'>
             <Heading p='4' as='h2' size='lg'>
               Create a New Town

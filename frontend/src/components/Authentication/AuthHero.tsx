@@ -6,12 +6,13 @@ import LogoutButton from "./LogoutButton";
 
 export default function AuthHero() {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    // logic
+    console.log(user)
 
     if (isAuthenticated) {
         // replace with logged in view
         return <LogoutButton />
     } 
+    
     return <LoginButton />
 
 }
